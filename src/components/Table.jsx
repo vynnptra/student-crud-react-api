@@ -22,7 +22,7 @@ export default function Table({data, columns, create}){
           </div>
 				<div className="lg:ml-40 ml-10 space-x-8">
 		  			<Link to={create}>
-						<div className="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">New Report</div>
+						<button className="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Create</button>
 		  			</Link>
 				</div>
 			</div>

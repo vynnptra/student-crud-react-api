@@ -4,6 +4,7 @@ import Navigation from '../components/navigation';
 import CreateSiswa from '../pages/Siswas/CreateSiswa';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import IndexHobby from '../pages/Hobbies/IndexHobby';
+import CreateHobbies from '../pages/Hobbies/CreateHobby';
 
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
                 <Route path="/siswa" element={<IndexSiswa />} />
                 <Route path='/siswa/create' element={<CreateSiswa/>} />
                 <Route path='/hobby' element={<IndexHobby/>} />
+                <Route path='/hobby/create' element={<CreateHobbies/>} />
                 
               </Routes>
       </BrowserRouter>

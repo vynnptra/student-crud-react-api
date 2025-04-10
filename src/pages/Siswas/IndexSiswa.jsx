@@ -55,7 +55,8 @@ export default function IndexSiswa(){
             <Table
             data = {siswa}
             columns = {columns}
-            create = "siswa/create"
+            create = "/siswa/create"
+            
             />
         </div>
     );
