@@ -11,10 +11,12 @@ export default function CreateSiswa() {
     const [dataHobbies, getHobbies] = useState([]);
     const [name, setName] = useState("");
     const [nisn, setNisn] = useState("");
-    const [phones, setPhones] = useState(["", "", ""]);
+    const [phones, setPhones] = useState([]);
     const [hobbies, setHobbies] = useState([]);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
+
+    const cleanedPhones = phones.filter((p) => p.trim() !== "")
 
 
     
@@ -37,7 +39,7 @@ export default function CreateSiswa() {
             await axios.post(`${api}/api/siswa`, {
                 name,
                 nisn,
-                phone_number: phones,
+                phone_number: cleanedPhones,
                 hobbies: hobbies,
             }, {
                 headers: {
@@ -69,7 +71,20 @@ export default function CreateSiswa() {
         setPhones(newPhones);
     }
 
+    const addPhone = () => {
+        setPhones([...phones, ""])
+    };
 
+    const removePhones = (index) => {
+        setPhones(phones.filter((_, i) => index !== i))
+    }
+
+
+    useEffect(() => {
+        if (phones.length === 0) {
+            setPhones([""]);
+        }
+    }, [phones])
     useEffect(() => {getAllHobbies()}, []);
 
     return (
@@ -99,18 +114,33 @@ export default function CreateSiswa() {
                     {errors.hobbies && <p className="text-red-500 text-sm mt-4">{errors.hobbies[0]} </p>}
                     </div>
                 </div>
-                <div>
-                    <FormInput.Label > Phone </FormInput.Label>
-                    {
-                        phones.map((phone, index) => (
-                            <div key={index} >
-                                <FormInput.Input type="number" value={phone} onChange={(e) => handlePhoneChange(index, e.target.value)} />
-                                    
-                            </div>
-                        ))
-                    }
-                        {errors.phone_number && <p className="text-red-500 text-sm">{errors.phone_number[0]} </p>}
-                </div>
+                       <div>
+                           <div className="flex justify-between">
+                               <FormInput.Label > Phone </FormInput.Label>
+                               <button type="button" className="text-sm text-green-700 block mb-1 font-medium mr-16 " onClick={() => addPhone()}  > Add +</button>
+                           </div>
+                           { phones.map((phone,index) => (
+                                   <div key={index} className="mt-2 flex">
+                                       <FormInput.Input type="number" value={phone} onChange={(e) => handlePhoneChange(index, e.target.value)} />
+                                       {phones.length > 0 
+                                       ?  <button type="button" className="text-sm block text-white px-3 font-medium ml-3 bg-red-600   rounded-md" onClick={() => {removePhones(index)}} >
+                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.0" stroke="currentColor" className="size-6">
+                                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
+                                       </svg>
+       
+                                   </button> : "" }
+                                      
+                                   </div>
+                           )) }
+                              {(() => {
+                               const phoneKey = Object.keys(errors).find(key => key.startsWith("phone_number"));
+                               if (!phoneKey) return null;
+       
+                               const message = errors[phoneKey][0].replace(phoneKey, "phone number");
+       
+                               return <p className="text-sm text-red-500">{message}</p>;
+                           })()}
+                       </div>
             </div>
             <div className="space-x-4 mt-12">
                 <FormInput.SubmitButton>Create</FormInput.SubmitButton>
