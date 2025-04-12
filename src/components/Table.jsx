@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Dropdown from "./dropdown";
 import axios from "axios";
 
 export default function Table({data, columns, create, edit, show, del, deleteSuccess}){
