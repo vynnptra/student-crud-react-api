@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Table from "../../components/Table";
 import axios from "axios";
+import { AppContext } from "../../Context/AppContext";
 
 export default function IndexSiswa(){
 
@@ -12,6 +13,7 @@ export default function IndexSiswa(){
     ];
 
     const [siswa, setSiswa ] = useState([]);
+    const {token} = useContext(AppContext);
 
     const api = "http://127.0.0.1:8000/api/siswa";
     
@@ -19,6 +21,7 @@ export default function IndexSiswa(){
     async function getAllSiswas(){
         const response = await axios.get(api, {
                 headers: {
+                    "Authorization": `Bearer ${token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
             }
@@ -38,7 +41,7 @@ export default function IndexSiswa(){
             : '-',
 
             hobbies: s.hobbies && s.hobbies.length > 0 
-            ? s.hobbies.filter(h => h.name).map(h => h.name).join(',')
+            ? s.hobbies.filter(h => h.name).map(h => h.name).join(', ')
             : '-',
         }))
         setSiswa(siswa);        
@@ -58,6 +61,8 @@ export default function IndexSiswa(){
             edit= 'edit/'
             del= 'http://127.0.0.1:8000/api/siswa/'
             deleteSuccess={getAllSiswas}
+            title = "Table Siswa"
+            subtitle = "all siswa data"
             
             />
         </div>

@@ -1,11 +1,13 @@
 import { Link, useNavigate } from "react-router";
 import FormInput from "../../components/FormInput";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AppContext } from "../../Context/AppContext";
 
 
 export default function CreateHobbies(){
     const api = 'http://127.0.0.1:8000/api/hobby'
+    const {token} = useContext(AppContext);
 
     const [hobby, setHobby] = useState("");
     const navigate = useNavigate();
@@ -17,6 +19,7 @@ export default function CreateHobbies(){
         try {
             await axios.post(api, {name: hobby}, {
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
@@ -32,7 +35,12 @@ export default function CreateHobbies(){
 
 
     return (
-        <FormInput onSubmit={submitForm} title="Create Hobby" >
+        <div className="pt-36">
+        <div className="p-8 rounded border shadow-md border-gray-200 w-9/12 ml-96">
+          <h1 className="font-medium text-3xl">Create Hobbies</h1>
+          <p className="text-gray-600 mt-6">Isi informasi pengguna dengan benar.</p>
+  
+        <FormInput onSubmit={submitForm}>
             <div className="mt-8 grid lg:grid-cols-2 gap-4">
                 <div>
                     <FormInput.Label>Name</FormInput.Label>
@@ -46,6 +54,9 @@ export default function CreateHobbies(){
                 <FormInput.CancelButton >Cancel</FormInput.CancelButton>
                 </Link>
             </div>
-        </FormInput>
+            
+            </FormInput>
+        </div>
+        </div>
     )
 }

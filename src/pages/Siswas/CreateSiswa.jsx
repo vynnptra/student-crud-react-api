@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router";
 import FormInput from "../../components/FormInput";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AppContext } from "../../Context/AppContext";
 
 
 
@@ -18,11 +19,12 @@ export default function CreateSiswa() {
 
     const cleanedPhones = phones.filter((p) => p.trim() !== "")
 
-
+    const {token} = useContext(AppContext);
     
     async function getAllHobbies(){
         const response = await axios.get(`${api}/api/hobby`, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
         }
@@ -43,8 +45,9 @@ export default function CreateSiswa() {
                 hobbies: hobbies,
             }, {
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type':  'application/json',
                 },
             });
 
@@ -88,7 +91,11 @@ export default function CreateSiswa() {
     useEffect(() => {getAllHobbies()}, []);
 
     return (
-
+        <div className="pt-36">
+        <div className="p-8 rounded border shadow-md border-gray-200 w-9/12 ml-96">
+          <h1 className="font-medium text-3xl">Create S</h1>
+          <p className="text-gray-600 mt-6">Isi informasi pengguna dengan benar.</p>
+  
         <FormInput onSubmit={storePost} title="Create Siswa" >
             <div className="mt-8 grid lg:grid-cols-2 gap-4">
                 <div>
@@ -149,6 +156,8 @@ export default function CreateSiswa() {
                 </Link>
             </div>
         </FormInput>
+        </div>
+        </div>
         
     )
 }
