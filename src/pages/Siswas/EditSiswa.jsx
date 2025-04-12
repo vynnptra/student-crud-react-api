@@ -1,9 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router";
 import FormInput from "../../components/FormInput";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AppContext } from "../../Context/AppContext";
 
 export default function EditSiswa () {
+
+    const {token} = useContext(AppContext);
 
     
     const {id} = useParams();
@@ -20,6 +23,7 @@ export default function EditSiswa () {
     async function getAllHobbies() {
        const res = await axios.get(`http://127.0.0.1:8000/api/hobby`, {
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
@@ -33,6 +37,7 @@ export default function EditSiswa () {
             
             const res = await axios.get(`http://127.0.0.1:8000/api/siswa/${id}`, {
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -58,6 +63,7 @@ export default function EditSiswa () {
                 phone_number: cleanedPhones 
             }, {
                 headers: {
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
@@ -108,7 +114,11 @@ export default function EditSiswa () {
     
 
     return (
-        
+        <div className="pt-36">
+        <div className="p-8 rounded border shadow-md border-gray-200 w-9/12 ml-96">
+          <h1 className="font-medium text-3xl">Edit Siswa</h1>
+          <p className="text-gray-600 mt-6">Isi informasi pengguna dengan benar.</p>
+  
         <FormInput title="Edit Siswa" onSubmit={updateForm}>
             <div className="mt-8 grid lg:grid-cols-2 gap-4">
                 <div>
@@ -169,6 +179,8 @@ export default function EditSiswa () {
                 </Link>
             </div>
         </FormInput>
+        </div>
+        </div>
         
     )
 }

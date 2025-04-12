@@ -1,17 +1,13 @@
-export default function FormInput({ title, children, ...props }) {
-    return (
-      <div className="pt-36">
-        <div className="p-8 rounded border shadow-md border-gray-200 w-9/12 ml-96">
-          <h1 className="font-medium text-3xl">{title}</h1>
-          <p className="text-gray-600 mt-6">Isi informasi pengguna dengan benar.</p>
+export default function FormInput({  children, ...props }) {
+
   
+    return (
+
           <form {...props}>
            
               {children}
 
           </form>
-        </div>
-      </div>
     );
   }
   
