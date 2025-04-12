@@ -15,17 +15,14 @@ export default function CreateHobbies(){
         e.preventDefault()
 
         try {
-            const response = await axios.post(api, {name: hobby}, {
+            await axios.post(api, {name: hobby}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
             })
-            console.log(response)
             navigate('/hobby')
         } catch (error) {
-            console.log(error);
-            console.log(error.response.data.errors.name)
             if (error.response?.data.errors) {
                 setError(error.response.data.errors);
             }
@@ -35,7 +32,7 @@ export default function CreateHobbies(){
 
 
     return (
-        <FormInput onSubmit={submitForm} >
+        <FormInput onSubmit={submitForm} title="Create Hobby" >
             <div className="mt-8 grid lg:grid-cols-2 gap-4">
                 <div>
                     <FormInput.Label>Name</FormInput.Label>

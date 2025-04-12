@@ -5,9 +5,9 @@ import axios from "axios";
 export default function IndexHobby(){
 
     const columns = [
-        { title: "Name", accessor: "name", width:"w-5/12"},
-        { title: "Action", accessor: "action", width:"w-1/12"},
+        { title: "Name", accessor: "name", width:"w-[90%]"},
     ]
+
     const [hobby, setHobby] = useState([]);
 
     const api = "http://127.0.0.1:8000/api/hobby";
@@ -30,7 +30,12 @@ export default function IndexHobby(){
             <Table
             data={hobby}
             columns={columns}
-            create="/hobby/create"
+            create= 'create'
+            read= 'read/'
+            edit= 'edit/'
+            del= 'http://127.0.0.1:8000/api/hobby/'
+            deleteSuccess={getAllHobbies}
+            
              />
         </>
     )

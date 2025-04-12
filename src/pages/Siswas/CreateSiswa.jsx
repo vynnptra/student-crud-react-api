@@ -11,7 +11,7 @@ export default function CreateSiswa() {
     const [dataHobbies, getHobbies] = useState([]);
     const [name, setName] = useState("");
     const [nisn, setNisn] = useState("");
-    const [phones, setPhones] = useState([""]);
+    const [phones, setPhones] = useState(["", "", ""]);
     const [hobbies, setHobbies] = useState([]);
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function CreateSiswa() {
         e.preventDefault();
         
         try {
-            const response = await axios.post(`${api}/api/siswa`, {
+            await axios.post(`${api}/api/siswa`, {
                 name,
                 nisn,
                 phone_number: phones,
@@ -45,12 +45,9 @@ export default function CreateSiswa() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-    
-            console.log(response.data);
+
             navigate("/siswa");
         } catch (errors) {
-            console.log(errors);
-            console.log(errors.response.data.errors)
             if (errors.response?.data.errors) {
                 setErrors(errors.response.data.errors);
             }
@@ -77,7 +74,7 @@ export default function CreateSiswa() {
 
     return (
 
-        <FormInput onSubmit={storePost} >
+        <FormInput onSubmit={storePost} title="Create Siswa" >
             <div className="mt-8 grid lg:grid-cols-2 gap-4">
                 <div>
                     <FormInput.Label > Name </FormInput.Label>
