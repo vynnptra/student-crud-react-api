@@ -10,6 +10,8 @@ import EditSiswa from '../pages/Siswas/EditSiswa';
 import Register from '../Auth/Register';
 import Login from '../Auth/Login';
 import { AppContext } from '../Context/AppContext';
+import ReadHobby from '../pages/Hobbies/ReadHobby';
+import ReadSiswa from '../pages/Siswas/ReadSiswa';
 
 
 export default function App() {
@@ -33,9 +35,13 @@ export default function App() {
                 <Route path="/siswa" element={<IndexSiswa />} />
                 <Route path='/siswa/create' element={<CreateSiswa/>} />
                 <Route path='/siswa/edit/:id' element={<EditSiswa/>} />
+                <Route path='/siswa/read/:id' element={<ReadSiswa/>} />
+
+                <Route path='/siswa/detail/:id'  />
                 <Route path='/hobby' element={<IndexHobby/>} />
                 <Route path='/hobby/create' element={<CreateHobbies/>} />
                 <Route path='/hobby/edit/:id' element={<EditHobby/>} />
+                <Route path='/hobby/read/:id' element={<ReadHobby/>} />
               </Routes>
             </>
           ) :

@@ -21,7 +21,7 @@ export default function IndexHobby(){
                 'Authorization': `Bearer ${token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-        }
+            }
     });
         setHobby(response.data.data);
     }

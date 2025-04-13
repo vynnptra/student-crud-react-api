@@ -18,7 +18,7 @@ export default function Navigation() {
         <div className="bg-white p-4 rounded-md shadow-md w-72 h-screen  flex space-y-96 fixed">
 
           {/* <div  className="ml-6 flex w-16 flex-col w-72  items-center space-y-10 py-6"> */}
-            <div  className="space-y-48 rounded-md bg-white flex flex-col justify-between pb-56">
+            <div  className="space-y-48 rounded-md bg-white flex flex-col justify-between mb-10">
               <ul>
                 <li className="p-5">
                   <div  className="flex items-center justify-center rounded-md bg-white p-4 text-blue-600">
@@ -38,7 +38,7 @@ export default function Navigation() {
                 </NavLink>
                 </li>
                 <li >
-                  <NavLink to="hobby"className={({isActive}) => `flex  pl-6  cursor-pointer   transition-all w-64 py-3 rounded-md mb-3 ${
+                  <NavLink to="hobby" className={({isActive}) => `flex  pl-6  cursor-pointer   transition-all w-64 py-3 rounded-md mb-3 ${
                   isActive ? 'bg-blue-600 text-white ' : 'text-gray-500 hover:text-white hover:bg-blue-600 '
                 }` } >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"  className="h-6 w-6 mr-2">

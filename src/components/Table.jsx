@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 
-export default function Table({data, columns, create, edit, show, del, deleteSuccess, title, subtitle}){
+export default function Table({data, columns, create, edit, read, del, deleteSuccess, title, subtitle}){
 	
 	// const del = (id)
 	const {token} = useContext(AppContext);
@@ -77,7 +77,7 @@ export default function Table({data, columns, create, edit, show, del, deleteSuc
 									)
 								}
 												<td className="flex gap-4 mr-5">
-														<Link to={edit  + item.id}>
+														<Link to={read  + item.id}>
 															<div className=" mt-2   rounded z-10 group">   
 															<div href="#" className="group-hover:text-blue-500">
 																show

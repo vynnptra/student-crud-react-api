@@ -93,7 +93,7 @@ export default function CreateSiswa() {
     return (
         <div className="pt-36">
         <div className="p-8 rounded border shadow-md border-gray-200 w-9/12 ml-96">
-          <h1 className="font-medium text-3xl">Create S</h1>
+          <h1 className="font-medium text-3xl">Create Siswa</h1>
           <p className="text-gray-600 mt-6">Isi informasi pengguna dengan benar.</p>
   
         <FormInput onSubmit={storePost} title="Create Siswa" >
