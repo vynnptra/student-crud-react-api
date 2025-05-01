@@ -62,6 +62,11 @@ export default function Login() {
         {errors.password && <p className="text-sm text-red-500">{errors.password[0]}</p>}
       </div>
       {authErrors && <p className="text-sm text-red-500">{authErrors}</p>}
+      <div className="mt-6 text-center text-sm text-gray-600">
+      <Link to="/forgot-password" className="text-indigo-600 hover:text-indigo-500 font-medium">
+      forgot password?
+      </Link>
+    </div>
 
       <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors  ">
         Sign In

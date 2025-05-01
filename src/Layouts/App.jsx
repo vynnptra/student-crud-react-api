@@ -12,6 +12,8 @@ import Login from '../Auth/Login';
 import { AppContext } from '../Context/AppContext';
 import ReadHobby from '../pages/Hobbies/ReadHobby';
 import ReadSiswa from '../pages/Siswas/ReadSiswa';
+import ForgotPassword from '../Auth/ForgotPassword';
+import ResetPassword from '../Auth/ResetPassword';
 
 
 export default function App() {
@@ -36,7 +38,6 @@ export default function App() {
                 <Route path='/siswa/create' element={<CreateSiswa/>} />
                 <Route path='/siswa/edit/:id' element={<EditSiswa/>} />
                 <Route path='/siswa/read/:id' element={<ReadSiswa/>} />
-
                 <Route path='/siswa/detail/:id'  />
                 <Route path='/hobby' element={<IndexHobby/>} />
                 <Route path='/hobby/create' element={<CreateHobbies/>} />
@@ -48,8 +49,10 @@ export default function App() {
           (
             <>
             <Routes>
+              <Route path='/forgot-password' element={<ForgotPassword/>}></Route>
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Login />} />
+              <Route path='/reset-password' element={<ResetPassword />}  />
               <Route path="/register" element={<Register />} />
             </Routes>
             </>
